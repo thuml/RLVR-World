@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="RLVR-World: Training World Models with Reinforcement Learning">
+  <meta name="keywords" content="World Model, Reinforcement Learning with Verifiable Rewards, RLVR, ">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RLVR-World: Training World Models with Reinforcement Learning</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" target="_blank" href="https://manchery.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" target="_blank" href="https://thuml.github.io/iVideoGPT/">
+            iVideoGPT
+          </a>
+          <a class="navbar-item" target="_blank" href="https://github.com/thuml/ContextWM">
+            ContextWM
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">🌏 RLVR-World: Training World Models with Reinforcement Learning</h1>
+
+          <!-- <h3 class="title is-4">NeurIPS 2024</h3> -->
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://manchery.github.io/">Jialong Wu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=lpKyrxAAAAAJ">Shaofeng Yin</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=Vpx_a8EAAAAJ">Ningya Feng</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://ise.thss.tsinghua.edu.cn/~mlong/">Mingsheng Long</a>#<sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>1</sup>School of Software, BNRist, Tsinghua University,</span>
+            <span class="author-block"><sup>2</sup>Zhili College, Tsinghua University</span>
+          </div>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"># Corresponding Author</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- icons: https://fontawesome.com/v4/icons/ -->
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a target="_blank" href="https://arxiv.org/abs/2405.15223"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a target="_blank" href="https://github.com/thuml/RLVR-World"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+              <!-- Data Link. -->
+              <span class="link-block">
+                <a target="_blank" href=""
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fa fa-database"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span>
+
+              <!-- Model Link. -->
+              <span class="link-block">
+                <a target="_blank" href=""
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fa fa-share-alt"></i>
+                  </span>
+                  <span>Models</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            World models predict state transitions in response to actions and are increasingly developed across 
+            diverse modalities. However, standard training objectives such as maximum likelihood estimation 
+            (MLE) often misalign with task-specific goals of world models, i.e., transition prediction metrics like 
+            accuracy or perceptual quality. In this paper, we present RLVR-World, a unified framework that 
+            leverages reinforcement learning with verifiable rewards (RLVR) to directly optimize world models for 
+            such metrics. Despite formulating world modeling as autoregressive prediction of tokenized 
+            sequences, RLVR-World evaluates metrics of decoded predictions as verifiable rewards. We 
+            demonstrate substantial performance gains on both language- and video-based world models across 
+            domains, including text games, web navigation, and robot manipulation. Our work indicates that, 
+            beyond recent advances in reasoning language models, RLVR offers a promising post-training 
+            paradigm for enhancing the utility of generative models more broadly.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+<div class="rows">
+  <div class="row is-full-width half-width">
+    <h2 class="title is-3 has-text-centered"><span>Method Overview</span></h2>
+    <h3 class="title is-4">Surrogate vs. Direct Optimization</h3>
+    <div class="content has-text-centered">
+      <img src="static/images/concept.png" class="interpolation-image" width="85%"/>
+    </div>
+    <p class="content has-text-justified">
+      World models are typically trained using <b>surrogate objectives</b> such as maximum likelihood estimation (<b>MLE</b>), which misalign with task-specific goals of state transition prediction. 
+      <!-- For instance, training video models with standard mean squared error is known to produce blurry predictions, and in language models, likelihood-based objectives have been linked to issues like repetition and hallucination. -->
+      Reinforcement learning with verifiable rewards (<b>RLVR</b>) offers a promising emerging approach to tuning pre-trained models for <b>direct optimization</b> toward the target task.
+    </p>
+
+    <h3 class="title is-4">RLVR-World Framework</h3>
+    <div class="content has-text-centered">
+      <img src="static/images/method.png" class="interpolation-image" width="90%"/>
+    </div>
+    <p class="content has-text-justified">
+      We introduces RLVR-World, a unified framework where (1) world models across various modalities are unified under a <b>sequence modeling</b> formulation, and (2) <b>task-specific prediction metrics</b> serve as verifiable rewards.
+      (<i>Top</i>) <b>Language-based world models</b> predict verbal state transitions in response to verbal actions.
+      (<i>Bottom</i>) <b>Video-based world models</b>, equipped with a visual tokenizer, predict future visual observations conditioned on action vectors.
+    </p>
+  </div>
+</div>
+
+
+  </div>
+</section>
+
+<section class="section" id="language-world-model">
+  <div class="container is-max-desktop">    
+    <div class="rows">
+      <h2 class="title is-3 has-text-centered">Evaluating Language World Models</h2>
+
+      <p class="content has-text-justified">
+        Beyond the success of large language models (LLMs) in math and code domains, we introduce the world modeling task as <b>a new testbed for RLVR in LLMs</b>. 
+        This task, predicting the transition of verbal world states, naturally lends itself to using prediction accuracy as a verifiable reward.
+      </p>
+
+      <h3 class="title is-4">Text Game State Prediction</h3>
+
+      <p class="content has-text-justified" style="margin-bottom: 0em;">
+        We evaluate on a dataset of <a href="https://arxiv.org/abs/2406.06485">text game state transitions</a> and RLVR improves a 1.5B LLM to better serve as text-based world simulators, achieving <b>+30.7%</b> accuracy and rivaling the overall performance of GPT-4.
+      </p>
+
+      <div class="content has-text-centered" style="margin-top: 0em;margin-bottom: 0em;">
+        <img src="static/images/text_game.png" class="interpolation-image" width="85%"/>
+      </div>
+      
+      <h3 class="title is-4" style="margin-top: 0em;">Web Page State Prediction</h3>
+
+      <p class="content has-text-justified" style="margin-bottom: 0em;">
+        We further evaluate on more realistic web navigation scenarios, using a <a href="https://arxiv.org/abs/2410.13232">web page state transition</a> dataset collected from the <a href="https://webarena.dev/">WebArena</a> benchmark. The world model of the Internet can also be enhanced substantially (<b>+15.1%</b> F1 score) by RLVR.
+
+      <div class="content has-text-centered" style="margin-top: 0em;;margin-bottom: 0em;">
+        <img src="static/images/web_page.png" class="interpolation-image" width="85%"/>
+      </div>
+
+      <h3 class="title is-4" style="margin-top: 0em;">Application: Model Predictive Control for Web Agents 💻️</h3>
+
+      <p class="content has-text-justified">
+        RVLR-trained world models finally enable more powerful <a href="https://arxiv.org/abs/2410.13232">web agents</a>, with relatively <b>+18.4%</b> improvements on <a href="https://webarena.dev/">WebArena</a> success rates.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="video-world-model">
+  <div class="container is-max-desktop">    
+    
+    <div class="rows">
+    <h2 class="title is-3 has-text-centered">Evaluating Video World Models</h2>
+
+    <p class="content has-text-justified">
+      We <b>pioneer</b> the RLVR fine-tuning of <a href="https://thuml.github.io/iVideoGPT/">autoregressive video world models</a> by directly measuring and optimizing perceptual metrics of decoded predicted frames, offering analyses and insights into broader generative models beyond the scope of reasoning models.
+    </p>
+    
+    <h3 class="title is-4">Robot Manipulation Trajectory Prediction</h3>
+
+    <p class="content has-text-justified">
+      We use the <a href="https://robotics-transformer1.github.io/">RT-1</a> robotic manipulation dataset.
+      RLVR bridges the gap between pre-training objectives and visual prediction metrics, leading to more accurate predictions (relatively <b>+9.2%</b> LPIPS), improved training efficiency (<b>4 orders</b> faster), and reduced artifacts such as repetition.
+    </p>
+    
+    <div class="content has-text-centered">
+      <img src="static/images/robot_manipulation.png" class="interpolation-image" width="85%"/>
+    </div>
+
+    <h3 class="title is-5">Video Samples</h3>
+
+    <div style="margin-bottom: 2em;">
+      <div class="zoom_container has-text-centered">
+        <div style="width:33%;float:left">
+          <video muted autoplay controls playsinline loop>
+            <source src="static/videos/gt1.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>Ground truth</i></p>
+        </div>
+        <div style="width:33%;float:left">
+          <video muted autoplay controls playsinline loop>
+          <source src="static/videos/rlvr1.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>RLVR-World</i></p>
+        </div>
+        <div style="width:33%;float:left">
+          <video muted autoplay controls playsinline loop>
+            <source src="static/videos/base1.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>Base model</i></p>
+        </div>
+      </div>
+
+      <div class="zoom_container has-text-centered">
+        <div style="width:33%;float:left">
+          <video muted autoplay controls playsinline loop>
+            <source src="static/videos/gt2.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>Ground truth</i></p>
+        </div>
+        <div style="width:33%;float:left">
+          <video muted autoplay controls playsinline loop>
+          <source src="static/videos/rlvr2.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>RLVR-World</i></p>
+        </div>
+        <div style="width:33%;float:left">
+          <video muted autoplay controls playsinline loop>
+            <source src="static/videos/base2.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>Base model</i></p>
+        </div>
+      </div>
+
+      <!-- <div class="zoom_container has-text-centered">
+        <div style="width:33%;float:left">
+          <video muted autoplay controls playsinline loop>
+            <source src="static/videos/gt3.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>Ground truth</i></p>
+        </div>
+        <div style="width:33%;float:left">
+          <video muted autoplay controls playsinline loop>
+          <source src="static/videos/rlvr3.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>RLVR-World</i></p>
+        </div>
+        <div style="width:33%;float:left">
+          <video muted autoplay controls playsinline loop>
+            <source src="static/videos/base3.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>Base model</i></p>
+        </div>
+      </div> -->
+
+      <div style="clear: both"></div>
+    </div>
+
+    <h3 class="title is-5">Repetition Reduction</h3>
+
+    <div style="margin-bottom: 2em;">
+
+      <div class="zoom_container has-text-centered">
+        <div style="width:33%;float:left">
+          <video muted autoplay controls playsinline loop>
+            <source src="static/videos/gt4.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>Ground truth</i></p>
+        </div>
+        <div style="width:33%;float:left">
+          <video muted autoplay controls playsinline loop>
+          <source src="static/videos/rlvr4.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>RLVR-World (No repetition)</i></p>
+        </div>
+        <div style="width:33%;float:left">
+          <video muted autoplay controls playsinline loop>
+            <source src="static/videos/base4.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>Base model (Repetition)</i></p>
+        </div>
+      </div>
+
+      <div class="zoom_container has-text-centered">
+        <div style="width:33%;float:left">
+          <video muted autoplay controls playsinline loop>
+            <source src="static/videos/gt5.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>Ground truth</i></p>
+        </div>
+        <div style="width:33%;float:left">
+          <video muted autoplay controls playsinline loop>
+          <source src="static/videos/rlvr5.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>RLVR-World (No repetition)</i></p>
+        </div>
+        <div style="width:33%;float:left">
+          <video muted autoplay controls playsinline loop>
+            <source src="static/videos/base5.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>Base model (Repetition)</i></p>
+        </div>
+      </div>
+
+      <div style="clear: both"></div>
+    </div>
+
+
+    <h3 class="title is-4">Application: Real2Sim Policy Evaluation 🤖</h3>
+
+    <p class="content justify">
+      <img src="static/images/policy_eval.png" class="interpolation-image" width="50%" align="right" style="margin:0% 4% "/>
+      Video world models can serve as real-world simulators for policy evaluation. 
+      We evaluate four policy checkpoints from <a href="https://robotics-transformer1.github.io/">RT-1</a> and <a href="https://robotics-transformer-x.github.io/">RT-1-X</a>, on six tasks involving opening and closing top, middle, and bottom drawers.
+      Compared to handcrafted <a href="https://arxiv.org/abs/2405.05941">SIMPLER</a> simulators, video world models yield smaller discrepancies between <b>real and simulated success rates</b>, suggesting world models as a scalable approach to bridging the sim-to-real gap.
+      Among the video world models, RLVR further improves upon the base model.
+    </p>
+
+    <h3 class="title is-5">Open Drawer</h3>
+
+    <div style="margin-bottom: 2em;">
+      <div class="zoom_container has-text-centered">
+        <div style="width:50%;float:left">
+          <video muted autoplay controls playsinline loop>
+            <source src="static/videos/open_succ.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>RT-1 Converged Checkpoint</i></p>
+        </div>
+        <div style="width:50%;float:left">
+          <video muted autoplay controls playsinline loop>
+          <source src="static/videos/open_fail.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>RT-1 Begin Checkpoint</i></p>
+        </div>
+      </div>
+      <div style="clear: both"></div>
+    </div>
+
+    <h3 class="title is-5">Close Drawer</h3>
+
+    <div style="margin-bottom: 2em;">
+      <div class="zoom_container has-text-centered">
+        <div style="width:50%;float:left">
+          <video muted autoplay controls playsinline loop>
+            <source src="static/videos/close_succ.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>RT-1 Converged Checkpoint</i></p>
+        </div>
+        <div style="width:50%;float:left">
+          <video muted autoplay controls playsinline loop>
+          <source src="static/videos/close_fail.mp4" type="video/mp4">
+          </video>
+          <p class="content has-text-centered"><i>RT-1 Begin Checkpoint</i></p>
+        </div>
+      </div>
+      <div style="clear: both"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section" id="visual-mbrl">
+  <div class="container is-max-desktop content">        
+    <div class="rows">
+    <h2 class="title is-3 has-text-centered">Related Research</h2>
+    <p class="content has-text-justified">
+      You may also be interested in <a href="https://github.com/thuml/iVideoGPT">iVideoGPT</a>, the architecture of our base video world model. It features a compressive tokenization for visual observations and an autoregressive transformer. Its scalability enables interactive world models pre-trained on millions of human and robotic manipulation trajectories.
+    </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="citation">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3  has-text-centered">Citation</h2>
+    <pre><code>@article{wu2025rlvr,
+    title={RLVR-World: Training World Models with Reinforcement Learning}, 
+    author={Jialong Wu and Shaofeng Yin and Ningya Feng and Mingsheng Long},
+    journal={arXiv preprint arXiv:2505.xxxxx},
+    year={2025},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/thuml/RLVR-World" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website template borrowed from  <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
