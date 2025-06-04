@@ -15,7 +15,7 @@ cd ..
 pip install -r requirements.txt
 ```
 
-❗ Please make sure that `vllm==0.6.3` is installed, as we do NOT implement interactive rollout for other versions. Thanks @yfpeng1234 for pointing out this!
+❗ Please make sure that `vllm==0.6.3` is installed, as we do NOT implement interactive rollout for other versions.
 
 ## Data Preparation
 
