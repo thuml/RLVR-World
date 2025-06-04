@@ -46,5 +46,6 @@ if package_version <= '0.6.3':
     from .vllm_rollout import vLLMRollout
     from .fire_vllm_rollout import FIREvLLMRollout
 else:
+    raise NotImplementedError
     vllm_mode = 'spmd'
     from .vllm_rollout_spmd import vLLMRollout
