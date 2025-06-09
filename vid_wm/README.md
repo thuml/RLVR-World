@@ -113,7 +113,7 @@ bash scripts/eval_policy.sh \
 
 ## Tips
 
-- If you encouter `ImportError: cannot import name 'cached_download' from 'huggingface_hub' (/workspace/wujialong/anaconda3/envs/vid_wm5/lib/python3.10/site-packages/huggingface_hub/__init__.py)` due to version incompatibility, just remove import of `cached_download`.
+- If you encouter `ImportError: cannot import name 'cached_download' from 'huggingface_hub' (/home/your_username/anaconda3/envs/your_env/lib/python3.10/site-packages/huggingface_hub/__init__.py)` due to version incompatibility, just remove the import of `cached_download`.
 
 ## Acknowledgement
 
