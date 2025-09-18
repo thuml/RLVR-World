@@ -1,4 +1,4 @@
-# RLVR-World: Training World Models with Reinforcement Learning
+# RLVR-World: Training World Models with Reinforcement Learning (NeurIPS 2025)
 
 [![Project Page](https://img.shields.io/badge/Project_Page-blue)](https://thuml.github.io/RLVR-World/)
 [![Paper](https://img.shields.io/badge/arXiv-Paper-b31b1b.svg?logo=arxiv)](https://arxiv.org/abs/2505.13934)
@@ -10,6 +10,7 @@ Give it a star 🌟 if you find our work useful!
 
 ## 🔥 News
 
+- 🚩 **2024.09.18**: RLVR-World has been accepted by NeurIPS 2025, congrats!
 - 🚩 **2025.05.26**: We release all models and datasets.
 - 🚩 **2025.05.21**: We open-source our training codes.
 - 🚩 **2025.05.21**: Our paper is released on [arXiv](https://arxiv.org/abs/2505.13934).
