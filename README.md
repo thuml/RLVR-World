@@ -80,10 +80,10 @@ See [`vid_wm`](/vid_wm):
 If you find this project useful, please cite our paper as:
 
 ```
-@article{wu2025rlvr,
+@inproceedings{wu2025rlvr,
     title={RLVR-World: Training World Models with Reinforcement Learning}, 
     author={Jialong Wu and Shaofeng Yin and Ningya Feng and Mingsheng Long},
-    journal={arXiv preprint arXiv:2505.13934},
+    booktitle={Advances in Neural Information Processing Systems},
     year={2025},
 }
 ```
