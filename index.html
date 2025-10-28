@@ -171,10 +171,10 @@
     <h2 class="title is-3 has-text-centered"><span>Method Overview</span></h2>
     <h3 class="title is-4">Surrogate vs. Direct Optimization</h3>
     <div class="content has-text-centered">
-      <img src="static/images/concept.png" class="interpolation-image" width="85%"/>
+      <img src="static/images/concept.png" class="interpolation-image" style="margin-top:20px;" width="85%"/>
     </div>
     <p class="content has-text-justified">
-      World models are typically trained using <b>surrogate objectives</b> such as maximum likelihood estimation (<b>MLE</b>), which misalign with task-specific goals of state transition prediction. 
+      World models are typically pre-trained using <b>surrogate objectives</b> such as maximum likelihood estimation (<b>MLE</b>), which misalign with task-specific goals of state transition prediction. 
       <!-- For instance, training video models with standard mean squared error is known to produce blurry predictions, and in language models, likelihood-based objectives have been linked to issues like repetition and hallucination. -->
       Reinforcement learning with verifiable rewards (<b>RLVR</b>) offers a promising emerging approach to tuning pre-trained models for <b>direct optimization</b> toward the target task.
     </p>
