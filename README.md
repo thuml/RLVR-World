@@ -10,6 +10,7 @@ Give it a star 🌟 if you find our work useful!
 
 ## 🔥 News
 
+- 🚩 **2025.10.28**: NeurIPS 2025 camera-ready version is released on [arXiv](https://arxiv.org/abs/2505.13934v2).
 - 🚩 **2024.09.18**: RLVR-World has been accepted by NeurIPS 2025, congrats!
 - 🚩 **2025.05.26**: We release all models and datasets.
 - 🚩 **2025.05.21**: We open-source our training codes.
